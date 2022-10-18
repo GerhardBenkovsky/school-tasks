@@ -1,4 +1,4 @@
-package block1;
+package schooltasks.block1;
 public class ShapesBeginners {
 
 	public static void main(String[] args) {

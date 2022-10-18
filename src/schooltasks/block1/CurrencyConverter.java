@@ -1,4 +1,4 @@
-package block1;
+package schooltasks.block1;
 import java.util.HashMap;
 import java.util.Scanner;
 
