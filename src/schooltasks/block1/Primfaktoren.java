@@ -1,43 +1,41 @@
 package schooltasks.block1;
+
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.function.Function;
+
+import schooltasks.util.Benchmark;
+import schooltasks.util.Settings;
+import schooltasks.util.Benchmark.Clock;
 
 public class Primfaktoren {
 
-	public static void main(String args[]) {
+	public Primfaktoren() {
 		int number;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter a number ::");
 //		number = sc.nextInt();
-		number = 9876;
+		number = 1236521;
 
-		Primfaktoren primfaktoren = new Primfaktoren();
+		System.out.println(getPrimeFactors.apply(number));
 
-		List<Clock> clocks = benchmark(20000, number, primfaktoren.getPrimeFactors);
-
-		List<Long> times = new ArrayList<>(clocks.size());
-
-		for (Clock c : clocks)
-			times.add(c.endTime - c.startTime);
-
-		Long sum = times.stream().reduce(0L, Long::sum);
-
-		System.out.println("Avg time: " + (sum / times.size()) + "ns");
+		if (Settings.BENCHMARK) {
+			List<Clock> clocks = Benchmark.markbench(10000, number, getPrimeFactors);
+			System.out.println("Avg time: " + Benchmark.eval(clocks) + "ns");
+		}
 
 		sc.close();
+
 	}
 
-	public static <V> List<Clock> benchmark(int rep, int number, Function<Integer, List<V>> fun) {
-		List<Clock> times = new ArrayList<Clock>(rep + 10);
+	public static void main(String args[]) {
+		Primfaktoren primfaktoren = new Primfaktoren();
 
-		for (int i = 0; i < rep; i++) {
-			Clock clock = new Clock();
-			fun.apply(number);
-			times.add(clock.stop());
-		}
-		return times;
 	}
 
 	private Function<Integer, List<Integer>> getPrimeFactors = new Function<Integer, List<Integer>>() {
@@ -50,7 +48,7 @@ public class Primfaktoren {
 				number = number / 2;
 				numbers.add(2);
 			}
-			for (int i = 3; i < number / 2; i+=2) {
+			for (int i = 3; i < number / 2; i += 2) {
 				while (number % i == 0) {
 					number = number / i;
 					numbers.add(i);
@@ -62,21 +60,5 @@ public class Primfaktoren {
 			return numbers;
 		}
 	};
-
-	private static class Clock {
-
-		public final long startTime;
-		public long endTime;
-
-		public Clock() {
-			startTime = System.nanoTime();
-		}
-
-		public Clock stop() {
-			endTime = System.nanoTime();
-			return this;
-		}
-
-	}
 
 }
