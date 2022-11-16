@@ -3,7 +3,7 @@ public class ShapesBeginners {
 
 	public static void main(String[] args) {
 		ShapesBeginners sb = new ShapesBeginners();
-		sb.printTree(15);
+		sb.printTree(30);
 
 	}
 

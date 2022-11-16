@@ -1,6 +1,8 @@
 package schooltasks.block1;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Function;
@@ -18,17 +20,6 @@ public class Primfaktoren {
 			List<Clock> clocks = Benchmark.markbench(10000, number, getPrimeFactors);
 			System.out.println("Avg time: " + Benchmark.eval(clocks) + "ns");
 		}
-	}
-
-	public static void main(String args[]) {
-		int number;
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter a number ::");
-//		number = sc.nextInt();
-		number = 1236521;
-
-		new Primfaktoren(number);
-		sc.close();
 	}
 
 	private Function<Integer, List<Integer>> getPrimeFactors = new Function<Integer, List<Integer>>() {
@@ -53,5 +44,18 @@ public class Primfaktoren {
 			return numbers;
 		}
 	};
+
+	public static void main(String args[]) {
+		int number;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter a number ::");
+//		number = sc.nextInt();
+		number = 1236521;
+
+		new Primfaktoren(number);
+		sc.close();
+
+		new GregorianCalendar().isLeapYear(number);
+	}
 
 }
