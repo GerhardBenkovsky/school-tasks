@@ -8,8 +8,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.function.Function;
 
-import schooltasks.util.Benchmark.Clock;
-
 public class Benchmark {
 
 	private Benchmark() {
