@@ -45,6 +45,8 @@ public class ArraysAufgabe {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Type 1 for ascending and -1 for decending");
 		int a = sc.nextInt();
+		
+		sc.close();
 	}
 
 	private static void printRange(int min, int max, int[] arr) {
